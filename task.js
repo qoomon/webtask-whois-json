@@ -5,7 +5,7 @@ module.exports = function (context, callback) {
   if (!domain) {
     callback(null, {
       status: 'ERROR',
-      msg: 'missing query parameter "domain"'
+      msg: 'missing query parameter <domain>'
     });
   } else {
     whois(domain, function(err, whoisResult){
