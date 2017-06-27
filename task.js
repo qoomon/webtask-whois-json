@@ -48,7 +48,7 @@ module.exports = function (context, callback) {
           result = {
             status: 'OK',
             expirationDate: whoisResult.registryExpiryDate,
-            nameServers: whoisResult.nameServer || []
+            nameServers: whoisResult.nameServer && whoisResult.nameServer.toLowerCase().split(' ') || []
           };
           break;
         default:
