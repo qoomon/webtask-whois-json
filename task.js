@@ -16,7 +16,14 @@ module.exports = function (context, callback) {
           result = {
             status: 'OK',
             expirationDate: whoisResult.expirationDate,
-            nameServers: whoisResult.nameServer.toLowerCase().split(' ')
+            nameServers: whoisResult.nameServer && whoisResult.nameServer.toLowerCase().split(' ') || []
+          };
+          break;
+        case 'ee':
+          result = {
+            status: 'OK',
+            expirationDate: whoisResult.expire,
+            nameServers: whoisResult.nserver && whoisResult.nserver.toLowerCase().split(' ') || []
           };
           break;
         case 'io':
@@ -34,14 +41,14 @@ module.exports = function (context, callback) {
           result = {
             status: 'OK',
             expirationDate: whoisResult.registryExpiryDate,
-            nameServers: whoisResult.nameServer.toLowerCase().split(' ')
+            nameServers: whoisResult.nameServer && whoisResult.nameServer.toLowerCase().split(' ') || []
           };
           break;
-        case 'ee':
+        case 'zone':
           result = {
             status: 'OK',
-            expirationDate: whoisResult.expire,
-            nameServers: whoisResult.nserver.toLowerCase().split(' ')
+            expirationDate: whoisResult.registryExpiryDate,
+            nameServers: whoisResult.nameServer || []
           };
           break;
         default:
